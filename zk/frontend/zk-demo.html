@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>CradleChain — ZK Membership Proof PoC</title>
+  <link rel="stylesheet" href="../../frontend/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/snarkjs@0.7.4/build/snarkjs.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.0/dist/ethers.umd.min.js"></script>
+</head>
+<body class="bg-gradient-app">
+  <div class="page-shell">
+    <main>
+      <div class="page-header">
+        <h1>ZK Membership Proof — standalone PoC</h1>
+        <p class="text-secondary">
+          Not wired into the real donate → checkpoint → release flow — that integration
+          (a shielded pool + nullifier redesign of the whole escrow model) is out of scope.
+          This proves "I know a secret registered in this membership set" without revealing
+          which one, using a real circom circuit + snarkjs proof generated in your browser.
+        </p>
+      </div>
+      <section class="card card-glass">
+        <label class="text-secondary" for="zk-secret">Your secret (demo input — a real deployment would derive this from a registered credential, not a free-text field)</label>
+        <input id="zk-secret" type="text" placeholder="e.g. 12345" />
+        <button id="zk-prove-btn" type="button">Generate proof</button>
+        <button id="zk-verify-btn" type="button" disabled>Verify on-chain</button>
+        <pre id="zk-output" class="text-secondary"></pre>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="./zkDemo.js"></script>
+</body>
+</html>

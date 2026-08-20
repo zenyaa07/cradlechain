@@ -1,0 +1,1 @@
+export const PINATA_JWT = "PASTE_LOCAL_PINATA_JWT_HERE";

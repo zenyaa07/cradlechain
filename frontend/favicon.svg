@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <defs>
+    <linearGradient id="fishGrad" x1="0" y1="0" x2="40" y2="40">
+      <stop offset="0%" stop-color="oklch(70% 0.17 35)" stop-opacity="0.92" />
+      <stop offset="55%" stop-color="oklch(62% 0.12 235)" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="oklch(52% 0.12 235)" stop-opacity="0.8" />
+    </linearGradient>
+  </defs>
+  <polygon points="4,20 20,6 20,20" fill="url(#fishGrad)" fill-opacity="0.95" />
+  <polygon points="4,20 20,20 20,34" fill="url(#fishGrad)" fill-opacity="0.75" />
+  <polygon points="20,6 34,20 20,20" fill="url(#fishGrad)" fill-opacity="0.85" />
+  <polygon points="20,20 34,20 20,34" fill="url(#fishGrad)" fill-opacity="0.65" />
+  <polygon points="34,20 40,13 40,27" fill="oklch(66% 0.12 235)" fill-opacity="0.55" />
+  <circle cx="13.5" cy="15.5" r="1.5" fill="oklch(20% 0.02 250)" fill-opacity="0.7" />
+  <circle cx="30" cy="14" r="1.6" fill="none" stroke="oklch(30% 0.02 250)" stroke-opacity="0.4" stroke-width="0.8" />
+  <circle cx="33" cy="17" r="1.6" fill="none" stroke="oklch(30% 0.02 250)" stroke-opacity="0.4" stroke-width="0.8" />
+  <circle cx="30.5" cy="19.5" r="1.6" fill="none" stroke="oklch(30% 0.02 250)" stroke-opacity="0.4" stroke-width="0.8" />
+</svg>

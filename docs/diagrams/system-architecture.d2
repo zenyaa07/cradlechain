@@ -1,0 +1,144 @@
+vars: {
+  d2-config: {
+    layout-engine: elk
+  }
+}
+
+# Shared 7-role class palette. Reuse this exact block, byte-for-byte, in every
+# CradleChain diagram so a color always means the same architectural role.
+classes: {
+  trigger: {
+    style: {
+      fill: "#e1d5e7"
+      stroke: "#9673a6"
+      font-size: 28
+      stroke-width: 2
+    }
+  }
+  external: {
+    shape: cloud
+    style: {
+      fill: "#d5e8d4"
+      stroke: "#82b366"
+      font-size: 28
+      stroke-width: 2
+    }
+  }
+  logic: {
+    style: {
+      fill: "#dae8fc"
+      stroke: "#6c8ebf"
+      font-size: 28
+      stroke-width: 2
+    }
+  }
+  error: {
+    style: {
+      fill: "#f8cecc"
+      stroke: "#b85450"
+      font-size: 28
+      stroke-width: 2
+      stroke-dash: 3
+    }
+  }
+  storage: {
+    shape: cylinder
+    style: {
+      fill: "#f5f5f5"
+      stroke: "#666666"
+      font-size: 28
+      stroke-width: 2
+    }
+  }
+  mocked: {
+    shape: queue
+    style: {
+      fill: "#ffe6cc"
+      stroke: "#d79b00"
+      font-size: 28
+      stroke-width: 2
+    }
+  }
+}
+
+# Four columns left-to-right (Client -> Platform API -> Chain -> External),
+# each column internally stacked top-down. This reads as a left-to-right data
+# flow at a glance while keeping each column's own component list legible.
+direction: right
+
+client_layer: "Client Layer" {
+  style.font-size: 34
+  direction: down
+
+  wallets: "Wallets\nDonor / Organizer / Confirmer" { class: trigger }
+  frontend: "Frontend\nHTML/CSS/JS + ethers.js v6\nd3.js + Leaflet" { class: logic }
+  custodial: "Custodial RM pipeline\n(simulated, no-wallet donors)" { class: mocked }
+
+  wallets -> frontend: "connect (MetaMask)"
+}
+
+api_layer: "Platform API\nVercel Functions" {
+  style.font-size: 34
+  direction: down
+
+  trigger_checkpoint: "trigger-checkpoint.js\nlog custody stage" { class: logic }
+  verify_checkpoint: "verify-checkpoint.js\nAI photo verification" { class: logic }
+  summarize: "summarize.js\nstaleness z-score + AI recap" { class: logic }
+  relay_gas: "relay-gas.js\ngas drip for new wallets" { class: logic }
+}
+
+chain_layer: "Polygon Amoy" {
+  style.font-size: 34
+  direction: down
+
+  contract: "CradleChain.sol\nERC-721 + escrow" {
+    class: logic
+    direction: right
+
+    functions: "donate · createCampaign\nlogCheckpoint · confirmCheckpoint\nflagOverdue · revokeConfirmer\nmintCompletionNFT" { class: logic }
+    state: "Campaigns · Checkpoints\nConfirmers · Escrowed funds\nCompletion NFTs" { class: storage }
+
+    functions -> state
+  }
+}
+
+external_layer: "External Services" {
+  style.font-size: 34
+  direction: down
+
+  ai_chain: "AI vision fallback chain" {
+    class: external
+    direction: down
+
+    groq: "Groq\nqwen3.6-27b (vision)" { class: external }
+    gemini: "Gemini\ngemini-flash-latest" { class: external }
+    github_models: "GitHub Models\nPhi-4-multimodal-instruct" { class: external }
+
+    groq -> gemini: "on fail" { class: error }
+    gemini -> github_models: "on fail" { class: error }
+  }
+
+  pinata: "Pinata / IPFS\nproof-photo pinning" { class: external }
+  ifrc: "IFRC GO API\nMDRMY011 benchmark\n(1h cache)" { class: external }
+  stub_fallback: "Stub fallback\n(demo never blocks)" { class: error }
+
+  ai_chain -> stub_fallback: "all fail" { class: error }
+  ifrc -> stub_fallback: "timeout" { class: error }
+}
+
+# Left-to-right flow across columns
+client_layer.frontend -> chain_layer.contract.functions: "MetaMask tx"
+client_layer.custodial -> chain_layer.contract.functions: "donate()"
+client_layer.frontend -> api_layer.trigger_checkpoint: "demo trigger"
+client_layer.frontend -> api_layer.verify_checkpoint: "photo upload"
+client_layer.frontend -> api_layer.summarize: "campaign recap"
+client_layer.frontend -> api_layer.relay_gas: "gas drip request"
+
+api_layer.trigger_checkpoint -> chain_layer.contract.functions: "logCheckpoint()"
+api_layer.relay_gas -> chain_layer.contract.functions: "fund new wallet"
+api_layer.summarize -> chain_layer.contract.state: "read history"
+
+api_layer.verify_checkpoint -> external_layer.pinata: "pin proof photo"
+api_layer.verify_checkpoint -> external_layer.ai_chain.groq: "classify photo"
+api_layer.summarize -> external_layer.ai_chain.gemini: "generate recap"
+api_layer.summarize -> external_layer.ifrc: "pacing benchmark"

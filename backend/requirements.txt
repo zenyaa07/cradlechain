@@ -1,0 +1,6 @@
+Django==5.1.4
+django-cors-headers==4.6.0
+web3==7.6.0
+cryptography==43.0.3
+python-decouple==3.8
+eth-account==0.13.4

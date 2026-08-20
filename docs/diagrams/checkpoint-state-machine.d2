@@ -1,0 +1,148 @@
+vars: {
+  d2-config: {
+    layout-engine: elk
+  }
+}
+
+# Same shared 7-role class palette as system-architecture.d2 — keep this block
+# byte-for-byte identical across every CradleChain diagram.
+classes: {
+  trigger: {
+    style: {
+      fill: "#e1d5e7"
+      stroke: "#9673a6"
+      font-size: 28
+      stroke-width: 2
+    }
+  }
+  external: {
+    shape: cloud
+    style: {
+      fill: "#d5e8d4"
+      stroke: "#82b366"
+      font-size: 28
+      stroke-width: 2
+    }
+  }
+  logic: {
+    style: {
+      fill: "#dae8fc"
+      stroke: "#6c8ebf"
+      font-size: 28
+      stroke-width: 2
+    }
+  }
+  review: {
+    style: {
+      fill: "#fff2cc"
+      stroke: "#d6b656"
+      font-size: 28
+      stroke-width: 2
+    }
+  }
+  error: {
+    style: {
+      fill: "#f8cecc"
+      stroke: "#b85450"
+      font-size: 28
+      stroke-width: 2
+      stroke-dash: 3
+    }
+  }
+  storage: {
+    shape: cylinder
+    style: {
+      fill: "#f5f5f5"
+      stroke: "#666666"
+      font-size: 28
+      stroke-width: 2
+    }
+  }
+  mocked: {
+    shape: queue
+    style: {
+      fill: "#ffe6cc"
+      stroke: "#d79b00"
+      font-size: 28
+      stroke-width: 2
+    }
+  }
+}
+
+direction: down
+
+# --- Preconditions, set once per campaign before any checkpoint exists ------
+setup: "Campaign setup\n(one-time, before first donation)" {
+  style.font-size: 34
+  direction: right
+
+  created: "createCampaign()\nname, category, target wallet" { class: trigger }
+  confirmer_registered: "registerConfirmer()\norganizer picks a platform-\nverified confirmer" { class: trigger }
+  donation: "donate()\nfunds escrowed in contract" { class: trigger }
+
+  created -> confirmer_registered: "must happen before\nfirst donation"
+  confirmer_registered -> donation
+}
+
+# --- Core custody lifecycle, per checkpoint ---------------------------------
+custody: "Per-checkpoint custody state\n(CheckpointStatus enum, on-chain)" {
+  style.font-size: 34
+  direction: down
+
+  logged: "Logged\nlogCheckpoint()\norganizer + IPFS proof hash" { class: trigger }
+  pending: "Pending" { class: logic }
+  confirmed: "Confirmed\nconfirmCheckpoint()\nfunds auto-forwarded to target wallet" { class: logic }
+  overdue: "Overdue\nisOverdue() true\ncategory threshold elapsed" { class: error }
+  revocation: "Revocation scheduled\nrevokeConfirmer() or flagOverdue()\n8s cooldown (3min in production)" { class: error }
+  new_confirmer: "Confirmer swapped\nfinalizeRevocation()" { class: trigger }
+
+  logged -> pending
+  pending -> confirmed: "confirmCheckpoint()\nby registered confirmer only"
+  pending -> overdue: "URGENT 3d · ONGOING 14d\nLONGTERM 30d elapsed"
+  overdue -> revocation: "flagOverdue() — anyone, objective trigger\nrevokeConfirmer() — platform owner only"
+  revocation -> new_confirmer: "cooldown elapses\nfinalizeRevocation() — anyone"
+  new_confirmer -> pending: "same checkpoint,\nnew confirmer can sign it"
+}
+
+# --- Terminal state after the campaign's last checkpoint confirms ----------
+completion: "Campaign completion\n(after final checkpoint confirms)" {
+  style.font-size: 34
+  direction: right
+
+  eligible: "All checkpoints\nConfirmed" { class: logic }
+  minted: "mintCompletionNFT()\nERC-721 to organizer,\ntokenId == campaignId" { class: trigger }
+
+  eligible -> minted: "one-time,\nreverts if already minted"
+}
+
+# --- Donor-facing staleness grading, layered on top of Pending state -------
+staleness: "Donor-facing staleness grading\n(off-chain, computed in api/summarize.js\nlayered on top of on-chain Pending)" {
+  style.font-size: 34
+  direction: down
+
+  fresh: "Fresh" { class: review }
+  slower: "Slower than usual\nz-score 1-2" { class: review }
+  gone_dark: "Gone dark\nz-score >= 2" { class: review }
+
+  fresh -> slower: "pace slows vs.\ncampaign's own checkpoint history"
+  slower -> gone_dark: "pace slows further"
+}
+
+# --- Off-chain AI verification feeding into the on-chain proof hash --------
+verification: "Off-chain proof verification\n(api/verify-checkpoint.js, before logCheckpoint)" {
+  style.font-size: 34
+  direction: right
+
+  photo: "Organizer uploads\nstage photo" { class: trigger }
+  pin: "Pinata / IPFS\npins photo, returns hash" { class: external }
+  ai_check: "AI vision fallback chain\nGroq -> Gemini -> GitHub Models" { class: external }
+
+  photo -> pin
+  pin -> ai_check: "classify photo\nmatches claimed stage"
+}
+
+# --- Cross-container wiring: shows how the sub-diagrams above connect ------
+setup.donation -> verification.photo: "organizer ready to log\nfirst custody stage"
+verification.ai_check -> custody.logged: "proof hash + AI check\nfeed logCheckpoint() call"
+custody.pending -> staleness.fresh: "z-score computed per campaign\n(api/summarize.js, migrationMap.js)"
+custody.confirmed -> completion.eligible: "once every checkpoint\non the campaign is Confirmed"

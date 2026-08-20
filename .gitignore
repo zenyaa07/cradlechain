@@ -1,0 +1,31 @@
+.worktrees/
+node_modules/
+.env
+cache/
+artifacts/
+frontend/js/pinataConfig.js
+
+.superpowers/
+docs/superpowers/
+backend/.env
+backend/db.sqlite3
+__pycache__/
+*.pyc
+.vercel
+
+# zk PoC: generated build output (r1cs/wasm/ptau/zkey/vkey) and the downloaded
+# circom compiler binary — regenerate locally with `npm run zk:setup`
+zk/build/
+zk/bin/
+
+# Internal-only planning/rehearsal docs and ad-hoc debug scripts — never meant to ship.
+docs/plan-*.md
+docs/pitch-script.md
+docs/voiceover-script-*.md
+docs/demo-flow-redesign-*.md
+docs/screenshots/
+demo-title-slides.html
+check-*.js
+screenshot*.png
+*.mp3
+*.zip
