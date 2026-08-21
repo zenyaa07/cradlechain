@@ -1,85 +1,53 @@
 # Judge Testing Guide
 
-No crypto wallet is required to browse. Every read (campaign list, checkpoints,
-AI summary) works off a public read-only RPC connection — MetaMask is only
-needed to donate or for the two admin-facing actions called out as optional
-in the last step.
+No crypto wallet is required to browse. MetaMask is only needed to donate, or for the
+optional admin checks in the last step.
 
 ## Before you start
 
-Confirm with whoever is running the demo:
-- The URL to open (local `http://127.0.0.1:5500` or a deployed link).
-- Whether the 3 seeded demo campaigns are live on-chain. If they are, you'll
-  see real data and a real AI-generated summary. If a campaign card or the
-  page shows a **"Demo data — connect a wallet..."** notice, you're looking
-  at hardcoded fallback data, not a live result — see the "Real vs demo
-  data" section below before drawing conclusions from what you see.
+Ask whoever is running the demo for the URL, and whether the 3 seeded campaigns are live
+on-chain for this session. If they are, you will see real data. If a campaign shows a
+"Demo data, connect a wallet" notice, you are looking at fallback data instead, see the
+last section before judging anything off it.
 
-## Step 1 — Overview page
+## Step 1, Overview page
 
-Open the app. You land on **Overview**. Look at:
-- The four stat cards (Raised / Active Campaigns / Released / Confirmers).
-- The live activity feed and the fund-flow map — drag a node to see it move.
-
-This page alone should already tell you what the product does before you
+Open the app. You land on Overview. Look at the four stat cards, the live activity feed,
+and the fund-flow map. This page alone should tell you what the product does before you
 click anything.
 
-## Step 2 — Browse a campaign, no sign-in needed
+## Step 2, Browse a campaign
 
-Click **Donate** in the top nav, then open any campaign card. On the detail
-page you'll see:
-- The **5W1H block** (What / Why / Who / Where / How) — this is fixed,
-  pre-written copy per campaign, not AI-generated.
-- The **AI summary card** — click **Generate AI summary** to fetch it. This
-  one *is* AI-generated (or falls back to pre-written demo text if the AI
-  call fails or you're in preview mode; see below). It shows a 4-step
-  pipeline (checkpoints retrieved → pace vs. campaign history → confirmer
-  track record → status) followed by a plain-English summary paragraph. It's
-  on-demand rather than automatic so a donor just browsing campaigns never
-  triggers a Groq call they didn't ask for.
-- The checkpoint timeline / custody map for that campaign.
+Click Donate, then open any campaign card. On the detail page you will see the 5W1H
+block (fixed, pre-written copy, not AI-generated), the checkpoint timeline, and an AI
+summary card. Click Generate AI summary to fetch a real, on-demand summary of that
+campaign's pace and confirmer track record.
 
-## Step 3 — Trigger a live checkpoint
+## Step 3, Trigger a live checkpoint
 
-On a real (non-preview) campaign card, click **Trigger live checkpoint**.
-This fires a real, server-signed transaction on Polygon Amoy — no wallet
-needed. Watch the campaign's checkpoint count update, then click
-**Generate AI summary** again to see it reflect the new on-chain data
-(this also proves the AI summary isn't static — it re-generates from the
-checkpoint history that just changed).
+On a real campaign card, click Trigger live checkpoint. This fires a real, server-signed
+transaction on Polygon Amoy, no wallet needed. Watch the checkpoint count update, then
+generate the AI summary again to see it reflect the new data.
 
-## Step 4 — Confirmers panel & Analytics
+## Step 4, Confirmers and Analytics
 
-- **Confirm** page: view the confirmer allowlist — who's vetted to sign off
-  checkpoints for which campaign.
-- **Analytics** page: aggregate charts across all campaigns (time-to-confirm,
-  category breakdown, etc.).
+The Confirm page shows the confirmer allowlist. The Analytics page shows aggregate
+charts across all campaigns. Both are read-only.
 
-Both are read-only and need no sign-in.
+## Step 5, Optional, needs MetaMask
 
-## Step 5 — Optional, needs MetaMask (advanced / technical judges only)
+These test the contract's permission logic directly:
+- Confirm a checkpoint from a wallet that is not the registered confirmer. It should
+  revert.
+- Register a confirmer address that is not on the platform's allowlist. It should also
+  revert.
 
-These exercise the smart contract's permission logic directly and require a
-MetaMask wallet with testnet POL:
-- Try confirming a checkpoint from a wallet that isn't a registered
-  confirmer — it should revert.
-- Try registering a confirmer address that isn't on the platform's
-  allowlist — it should also revert.
+Skip this if you do not want to set up MetaMask.
 
-Skip this section if you don't want to set up MetaMask; everything else in
-this guide covers the product's actual donor/organizer experience.
+## Real vs demo data
 
-## Real vs demo data — how to tell
-
-- **Real**: after clicking **Generate AI summary**, the text is specific and
-  changes when you trigger a live checkpoint and generate again (Step 3). No
-  "Demo data" banner shown.
-- **Demo/fallback**: shown automatically if there are zero campaigns on-chain,
-  or if a live read fails. A small **"Demo data — connect a wallet..."**
-  notice appears, and the AI summary renders immediately (no button, no
-  trigger needed) with fixed, pre-written copy (same text every time,
-  doesn't change no matter what you click).
-
-If you only see demo data, the 3 seeded campaigns likely haven't been
-deployed/seeded for this session — flag it to whoever's running the demo
-rather than judging the AI summary feature off the fallback text.
+The AI summary text is specific and changes after you trigger a live checkpoint (Step
+3). If it stays the same no matter what you click, or a "Demo data" notice is shown,
+you are looking at fallback data, most often caused by the free public RPC this project
+runs on rate-limiting under load, not a broken feature. Flag it to whoever is running
+the demo.
