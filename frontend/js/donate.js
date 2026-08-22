@@ -1,5 +1,5 @@
 import { getContract, getSigner, txOverrides } from "./wallet.js";
-import { getCsrfToken } from "./backendAuth.js";
+import { getCsrfToken, API_BASE } from "./backendAuth.js";
 
 let backendSession = null;
 window.addEventListener("cradlechain:backend-session", (event) => {
@@ -25,7 +25,7 @@ export function mountDonateForms(root = document.getElementById("campaign-list")
 
     if (backendSession) {
       const csrfToken = await getCsrfToken();
-      const response = await fetch("http://127.0.0.1:8000/api/donate/", {
+      const response = await fetch(`${API_BASE}/donate/`, {
         method: "POST",
         credentials: "include",
         headers: { "Content-Type": "application/json", "X-CSRFToken": csrfToken },

@@ -10,13 +10,13 @@
 <line x1="900" y1="900" x2="666.1731409782016" y2="1035" stroke="#b85450" stroke-width="2.5" opacity="0.7" />
 <line x1="900" y1="900" x2="634.1019066867038" y2="853.1149920299288" stroke="#d79b00" stroke-width="2.5" opacity="0.7" />
 <line x1="900" y1="900" x2="726.4473453846343" y2="693.1680003578759" stroke="#d6b656" stroke-width="2.5" opacity="0.7" />
-<line x1="900" y1="630" x2="793.4235323839674" y2="535.80886825009" stroke="#9673a6" stroke-width="1.5" opacity="0.5" />
+<line x1="900" y1="630" x2="779.6814567952665" y2="557.7927729243142" stroke="#9673a6" stroke-width="1.5" opacity="0.5" />
 <line x1="900" y1="630" x2="816.7701720497959" y2="437.4280642544563" stroke="#9673a6" stroke-width="1.5" opacity="0.5" />
 <line x1="900" y1="630" x2="866.1953670617019" y2="331.0032980834537" stroke="#9673a6" stroke-width="1.5" opacity="0.5" />
-<line x1="900" y1="630" x2="948.3025435586545" y2="530.0406821536474" stroke="#9673a6" stroke-width="1.5" opacity="0.5" />
+<line x1="900" y1="630" x2="924.0401850419112" y2="535.3770444355036" stroke="#9673a6" stroke-width="1.5" opacity="0.5" />
 <line x1="900" y1="630" x2="983.2298279502041" y2="437.42806425445633" stroke="#9673a6" stroke-width="1.5" opacity="0.5" />
 <line x1="900" y1="630" x2="1066.65187169196" y2="354.9062891010698" stroke="#9673a6" stroke-width="1.5" opacity="0.5" />
-<line x1="1073.5526546153656" y1="693.1680003578759" x2="1062.5683360870958" y2="575.0245703540364" stroke="#6c8ebf" stroke-width="1.5" opacity="0.5" />
+<line x1="1073.5526546153656" y1="693.1680003578759" x2="1053.0380452061218" y2="571.8123851980554" stroke="#6c8ebf" stroke-width="1.5" opacity="0.5" />
 <line x1="1073.5526546153656" y1="693.1680003578759" x2="1141.6645659003686" y2="500.4210499696445" stroke="#6c8ebf" stroke-width="1.5" opacity="0.5" />
 <line x1="1073.5526546153656" y1="693.1680003578759" x2="1270.2986970374548" y2="462.1927402061147" stroke="#6c8ebf" stroke-width="1.5" opacity="0.5" />
 <line x1="1073.5526546153656" y1="693.1680003578759" x2="1198.4434422473648" y2="629.1206385159184" stroke="#6c8ebf" stroke-width="1.5" opacity="0.5" />
@@ -48,27 +48,28 @@
 <line x1="666.1731409782016" y1="1035" x2="380.6366835551064" y2="1134.865377464115" stroke="#b85450" stroke-width="1.5" opacity="0.5" />
 <line x1="666.1731409782016" y1="1035" x2="507.0444313923001" y2="990.0255865373563" stroke="#b85450" stroke-width="1.5" opacity="0.5" />
 <line x1="634.1019066867038" y1="853.1149920299288" x2="536.6838771758327" y2="926.0012105661001" stroke="#d79b00" stroke-width="1.5" opacity="0.5" />
-<line x1="634.1019066867038" y1="853.1149920299288" x2="431.3435683590206" y2="864.4873391373725" stroke="#d79b00" stroke-width="1.5" opacity="0.5" />
-<line x1="634.1019066867038" y1="853.1149920299288" x2="351.1760628992606" y2="746.0770125509393" stroke="#d79b00" stroke-width="1.5" opacity="0.5" />
-<line x1="634.1019066867038" y1="853.1149920299288" x2="567.8574257155428" y2="753.4726853426746" stroke="#d79b00" stroke-width="1.5" opacity="0.5" />
-<line x1="726.4473453846343" y1="693.1680003578759" x2="538.0550970072435" y2="686.8487922633453" stroke="#d6b656" stroke-width="1.5" opacity="0.5" />
-<line x1="726.4473453846343" y1="693.1680003578759" x2="563.8154431989557" y2="571.5491760270872" stroke="#d6b656" stroke-width="1.5" opacity="0.5" />
-<line x1="726.4473453846343" y1="693.1680003578759" x2="578.5162619114919" y2="429.310924128635" stroke="#d6b656" stroke-width="1.5" opacity="0.5" />
-<line x1="726.4473453846343" y1="693.1680003578759" x2="711.802068757443" y2="592.7263345572211" stroke="#d6b656" stroke-width="1.5" opacity="0.5" /></g>
-  <g><ellipse cx="793.4235323839674" cy="535.80886825009" rx="72" ry="27" fill="#e1d5e7" stroke="#9673a6" stroke-width="1.5" />
-<text x="793.4235323839674" y="528.43386825009" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#3d2b4a">Vanilla HTML/CSS/JS</text><text x="793.4235323839674" y="543.18386825009" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#3d2b4a">(no framework)</text>
+<line x1="634.1019066867038" y1="853.1149920299288" x2="437.14035608426224" y2="818.3853564965427" stroke="#d79b00" stroke-width="1.5" opacity="0.5" />
+<line x1="634.1019066867038" y1="853.1149920299288" x2="392.1262812126303" y2="641.2254151484584" stroke="#d79b00" stroke-width="1.5" opacity="0.5" />
+<line x1="726.4473453846343" y1="693.1680003578759" x2="540.9836954737764" y2="708.7165663444312" stroke="#d6b656" stroke-width="1.5" opacity="0.5" />
+<line x1="726.4473453846343" y1="693.1680003578759" x2="534.8266295927272" y2="598.8424425221584" stroke="#d6b656" stroke-width="1.5" opacity="0.5" />
+<line x1="726.4473453846343" y1="693.1680003578759" x2="508.36011884147905" y2="485.85243754654357" stroke="#d6b656" stroke-width="1.5" opacity="0.5" />
+<line x1="726.4473453846343" y1="693.1680003578759" x2="688.5687106013442" y2="609.4627030499805" stroke="#d6b656" stroke-width="1.5" opacity="0.5" />
+<line x1="726.4473453846343" y1="693.1680003578759" x2="666.4222383170487" y2="492.15023691660383" stroke="#d6b656" stroke-width="1.5" opacity="0.5" />
+<line x1="726.4473453846343" y1="693.1680003578759" x2="677.283256761114" y2="375.3122335321091" stroke="#d6b656" stroke-width="1.5" opacity="0.5" /></g>
+  <g><ellipse cx="779.6814567952665" cy="557.7927729243142" rx="72" ry="27" fill="#e1d5e7" stroke="#9673a6" stroke-width="1.5" />
+<text x="779.6814567952665" y="550.4177729243142" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#3d2b4a">Vanilla HTML/CSS/JS</text><text x="779.6814567952665" y="565.1677729243142" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#3d2b4a">(no framework)</text>
 <ellipse cx="816.7701720497959" cy="437.4280642544563" rx="72" ry="27" fill="#e1d5e7" stroke="#9673a6" stroke-width="1.5" />
 <text x="816.7701720497959" y="430.0530642544563" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#3d2b4a">ethers.js v6.13</text><text x="816.7701720497959" y="444.8030642544563" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#3d2b4a">(chain reads/writes)</text>
 <ellipse cx="866.1953670617019" cy="331.0032980834537" rx="72" ry="27" fill="#e1d5e7" stroke="#9673a6" stroke-width="1.5" />
 <text x="866.1953670617019" y="323.6282980834537" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#3d2b4a">d3.js v7</text><text x="866.1953670617019" y="338.3782980834537" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#3d2b4a">(charts, network graph)</text>
-<ellipse cx="948.3025435586545" cy="530.0406821536474" rx="72" ry="27" fill="#e1d5e7" stroke="#9673a6" stroke-width="1.5" />
-<text x="948.3025435586545" y="522.6656821536474" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#3d2b4a">Leaflet 1.9.4</text><text x="948.3025435586545" y="537.4156821536474" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#3d2b4a">(donation + custody map)</text>
+<ellipse cx="924.0401850419112" cy="535.3770444355036" rx="72" ry="27" fill="#e1d5e7" stroke="#9673a6" stroke-width="1.5" />
+<text x="924.0401850419112" y="528.0020444355036" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#3d2b4a">Leaflet 1.9.4</text><text x="924.0401850419112" y="542.7520444355036" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#3d2b4a">(donation + custody map)</text>
 <ellipse cx="983.2298279502041" cy="437.42806425445633" rx="72" ry="27" fill="#e1d5e7" stroke="#9673a6" stroke-width="1.5" />
 <text x="983.2298279502041" y="430.05306425445633" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#3d2b4a">MetaMask</text><text x="983.2298279502041" y="444.80306425445633" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#3d2b4a">wallet connect</text>
 <ellipse cx="1066.65187169196" cy="354.9062891010698" rx="72" ry="27" fill="#e1d5e7" stroke="#9673a6" stroke-width="1.5" />
 <text x="1066.65187169196" y="347.5312891010698" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#3d2b4a">Google Fonts</text><text x="1066.65187169196" y="362.2812891010698" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#3d2b4a">Manrope + Lora</text>
-<ellipse cx="1062.5683360870958" cy="575.0245703540364" rx="72" ry="27" fill="#dae8fc" stroke="#6c8ebf" stroke-width="1.5" />
-<text x="1062.5683360870958" y="575.0245703540364" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#1c3a5e">trigger-checkpoint.js</text>
+<ellipse cx="1053.0380452061218" cy="571.8123851980554" rx="72" ry="27" fill="#dae8fc" stroke="#6c8ebf" stroke-width="1.5" />
+<text x="1053.0380452061218" y="571.8123851980554" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#1c3a5e">trigger-checkpoint.js</text>
 <ellipse cx="1141.6645659003686" cy="500.4210499696445" rx="72" ry="27" fill="#dae8fc" stroke="#6c8ebf" stroke-width="1.5" />
 <text x="1141.6645659003686" y="500.4210499696445" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#1c3a5e">verify-checkpoint.js</text>
 <ellipse cx="1270.2986970374548" cy="462.1927402061147" rx="72" ry="27" fill="#dae8fc" stroke="#6c8ebf" stroke-width="1.5" />
@@ -130,21 +131,23 @@
 <ellipse cx="507.0444313923001" cy="990.0255865373563" rx="72" ry="27" fill="#f8cecc" stroke="#b85450" stroke-width="1.5" />
 <text x="507.0444313923001" y="982.6505865373563" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c1f1c">1h IFRC cache</text><text x="507.0444313923001" y="997.4005865373563" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c1f1c">+ negative cache</text>
 <ellipse cx="536.6838771758327" cy="926.0012105661001" rx="72" ry="27" fill="#ffe6cc" stroke="#d79b00" stroke-width="1.5" />
-<text x="536.6838771758327" y="918.6262105661001" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c3d00">Custodial RM pipeline</text><text x="536.6838771758327" y="933.3762105661001" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c3d00">(no-wallet donors)</text>
-<ellipse cx="431.3435683590206" cy="864.4873391373725" rx="72" ry="27" fill="#ffe6cc" stroke="#d79b00" stroke-width="1.5" />
-<text x="431.3435683590206" y="857.1123391373725" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c3d00">Gas drip relay</text><text x="431.3435683590206" y="871.8623391373725" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c3d00">(new wallet funding)</text>
-<ellipse cx="351.1760628992606" cy="746.0770125509393" rx="72" ry="27" fill="#ffe6cc" stroke="#d79b00" stroke-width="1.5" />
-<text x="351.1760628992606" y="738.7020125509393" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c3d00">demoConfig.js</text><text x="351.1760628992606" y="753.4520125509393" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c3d00">scripted demo state</text>
-<ellipse cx="567.8574257155428" cy="753.4726853426746" rx="72" ry="27" fill="#ffe6cc" stroke="#d79b00" stroke-width="1.5" />
-<text x="567.8574257155428" y="746.0976853426746" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c3d00">seed.js</text><text x="567.8574257155428" y="760.8476853426746" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c3d00">(Amoy testnet seeding)</text>
-<ellipse cx="538.0550970072435" cy="686.8487922633453" rx="72" ry="27" fill="#fff2cc" stroke="#d6b656" stroke-width="1.5" />
-<text x="538.0550970072435" y="679.4737922633453" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c4a13">Vercel</text><text x="538.0550970072435" y="694.2237922633453" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c4a13">(static + functions)</text>
-<ellipse cx="563.8154431989557" cy="571.5491760270872" rx="72" ry="27" fill="#fff2cc" stroke="#d6b656" stroke-width="1.5" />
-<text x="563.8154431989557" y="564.1741760270872" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c4a13">dotenv</text><text x="563.8154431989557" y="578.9241760270872" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c4a13">env management</text>
-<ellipse cx="578.5162619114919" cy="429.310924128635" rx="72" ry="27" fill="#fff2cc" stroke="#d6b656" stroke-width="1.5" />
-<text x="578.5162619114919" y="429.310924128635" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c4a13">D2 diagrams</text>
-<ellipse cx="711.802068757443" cy="592.7263345572211" rx="72" ry="27" fill="#fff2cc" stroke="#d6b656" stroke-width="1.5" />
-<text x="711.802068757443" y="585.3513345572211" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c4a13">hardhat test</text><text x="711.802068757443" y="600.1013345572211" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c4a13">(mocha/chai)</text>
+<text x="536.6838771758327" y="918.6262105661001" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c3d00">Gas drip relay</text><text x="536.6838771758327" y="933.3762105661001" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c3d00">(new wallet funding)</text>
+<ellipse cx="437.14035608426224" cy="818.3853564965427" rx="72" ry="27" fill="#ffe6cc" stroke="#d79b00" stroke-width="1.5" />
+<text x="437.14035608426224" y="811.0103564965427" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c3d00">demoConfig.js</text><text x="437.14035608426224" y="825.7603564965427" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c3d00">scripted demo state</text>
+<ellipse cx="392.1262812126303" cy="641.2254151484584" rx="72" ry="27" fill="#ffe6cc" stroke="#d79b00" stroke-width="1.5" />
+<text x="392.1262812126303" y="633.8504151484584" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c3d00">seed.js</text><text x="392.1262812126303" y="648.6004151484584" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c3d00">(Amoy testnet seeding)</text>
+<ellipse cx="540.9836954737764" cy="708.7165663444312" rx="72" ry="27" fill="#fff2cc" stroke="#d6b656" stroke-width="1.5" />
+<text x="540.9836954737764" y="701.3415663444312" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c4a13">Vercel</text><text x="540.9836954737764" y="716.0915663444312" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c4a13">(static + functions)</text>
+<ellipse cx="534.8266295927272" cy="598.8424425221584" rx="72" ry="27" fill="#fff2cc" stroke="#d6b656" stroke-width="1.5" />
+<text x="534.8266295927272" y="591.4674425221584" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c4a13">Render</text><text x="534.8266295927272" y="606.2174425221584" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c4a13">(Django hosting)</text>
+<ellipse cx="508.36011884147905" cy="485.85243754654357" rx="72" ry="27" fill="#fff2cc" stroke="#d6b656" stroke-width="1.5" />
+<text x="508.36011884147905" y="478.47743754654357" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c4a13">gunicorn</text><text x="508.36011884147905" y="493.22743754654357" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c4a13">(WSGI server)</text>
+<ellipse cx="688.5687106013442" cy="609.4627030499805" rx="72" ry="27" fill="#fff2cc" stroke="#d6b656" stroke-width="1.5" />
+<text x="688.5687106013442" y="602.0877030499805" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c4a13">dotenv</text><text x="688.5687106013442" y="616.8377030499805" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c4a13">env management</text>
+<ellipse cx="666.4222383170487" cy="492.15023691660383" rx="72" ry="27" fill="#fff2cc" stroke="#d6b656" stroke-width="1.5" />
+<text x="666.4222383170487" y="492.15023691660383" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c4a13">D2 diagrams</text>
+<ellipse cx="677.283256761114" cy="375.3122335321091" rx="72" ry="27" fill="#fff2cc" stroke="#d6b656" stroke-width="1.5" />
+<text x="677.283256761114" y="367.9372335321091" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c4a13">hardhat test</text><text x="677.283256761114" y="382.6872335321091" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="12.5"  fill="#5c4a13">(mocha/chai)</text>
 <ellipse cx="900" cy="630" rx="105" ry="48" fill="#e1d5e7" stroke="#9673a6" stroke-width="2.5" />
 <text x="900" y="630" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="20" font-weight="700" fill="#3d2b4a">Frontend</text>
 <ellipse cx="1073.5526546153656" cy="693.1680003578759" rx="105" ry="48" fill="#dae8fc" stroke="#6c8ebf" stroke-width="2.5" />
@@ -160,7 +163,7 @@
 <ellipse cx="666.1731409782016" cy="1035" rx="105" ry="48" fill="#f8cecc" stroke="#b85450" stroke-width="2.5" />
 <text x="666.1731409782016" y="1023.2" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="20" font-weight="700" fill="#5c1f1c">Reliability &amp;</text><text x="666.1731409782016" y="1046.8" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="20" font-weight="700" fill="#5c1f1c">Fallback Chains</text>
 <ellipse cx="634.1019066867038" cy="853.1149920299288" rx="105" ry="48" fill="#ffe6cc" stroke="#d79b00" stroke-width="2.5" />
-<text x="634.1019066867038" y="841.3149920299288" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="20" font-weight="700" fill="#5c3d00">Demo &amp; Custodial</text><text x="634.1019066867038" y="864.9149920299288" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="20" font-weight="700" fill="#5c3d00">Simulation</text>
+<text x="634.1019066867038" y="841.3149920299288" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="20" font-weight="700" fill="#5c3d00">Demo</text><text x="634.1019066867038" y="864.9149920299288" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="20" font-weight="700" fill="#5c3d00">Scripting</text>
 <ellipse cx="726.4473453846343" cy="693.1680003578759" rx="105" ry="48" fill="#fff2cc" stroke="#d6b656" stroke-width="2.5" />
 <text x="726.4473453846343" y="693.1680003578759" text-anchor="middle" dominant-baseline="middle" font-family="Inter, 'Segoe UI', sans-serif" font-size="20" font-weight="700" fill="#5c4a13">Deploy &amp; Tooling</text></g>
   
@@ -194,7 +197,7 @@
       <text x="66" y="242" font-family="Inter, 'Segoe UI', sans-serif" font-size="15" fill="#374151">Reliability &amp; Fallback Chains</text>
     
       <rect x="40" y="259" width="18" height="18" rx="4" fill="#ffe6cc" stroke="#d79b00" stroke-width="1.5" />
-      <text x="66" y="272" font-family="Inter, 'Segoe UI', sans-serif" font-size="15" fill="#374151">Demo &amp; Custodial Simulation</text>
+      <text x="66" y="272" font-family="Inter, 'Segoe UI', sans-serif" font-size="15" fill="#374151">Demo Scripting</text>
     
       <rect x="40" y="289" width="18" height="18" rx="4" fill="#fff2cc" stroke="#d6b656" stroke-width="1.5" />
       <text x="66" y="302" font-family="Inter, 'Segoe UI', sans-serif" font-size="15" fill="#374151">Deploy &amp; Tooling</text>

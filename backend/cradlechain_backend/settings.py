@@ -48,8 +48,14 @@ CORS_ALLOWED_ORIGINS = config("CORS_ALLOWED_ORIGINS", default="http://localhost:
 CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS
 
-SESSION_COOKIE_SAMESITE = "Lax"
-CSRF_COOKIE_SAMESITE = "Lax"
+# Frontend (Vercel) and backend (Render) are different sites, so the auth/CSRF
+# cookies need SameSite=None + Secure to survive a cross-site fetch() in prod.
+# Local dev keeps Lax since it doesn't need cross-site cookies and Secure
+# would require HTTPS on localhost.
+SESSION_COOKIE_SAMESITE = "Lax" if DEBUG else "None"
+CSRF_COOKIE_SAMESITE = "Lax" if DEBUG else "None"
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SECURE = not DEBUG
 
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "Asia/Kuala_Lumpur"

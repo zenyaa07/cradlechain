@@ -1,4 +1,4 @@
-const API_BASE = "https://cradlechain-backend.onrender.com/api";
+export const API_BASE = "https://cradlechain-backend.onrender.com/api";
 
 export async function getCsrfToken() {
   await fetch(`${API_BASE}/auth/csrf/`, { credentials: "include" });

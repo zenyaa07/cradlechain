@@ -1,6 +1,7 @@
 import { getChainSnapshot } from "./chainData.js";
 import { previewDonorLabels, previewVendorLabel } from "./previewData.js";
 import { iconSvg, GRAPH_KIND_ICON } from "./nodeIcons.js";
+import { API_BASE } from "./backendAuth.js";
 
 // Mirrors the .graph-node-* fill colors in style.css — used as the icon's secondary
 // tone (design draws each node's icon in white with a same-hue accent detail).
@@ -65,7 +66,7 @@ export function aggregateDonorNodes(nodes, links, { maxIndividualDonors = 25 } =
 export async function resolveDonorLabels(addresses) {
   if (addresses.length === 0) return {};
   try {
-    const response = await fetch(`http://127.0.0.1:8000/api/donor-labels/?addresses=${addresses.join(",")}`);
+    const response = await fetch(`${API_BASE}/donor-labels/?addresses=${addresses.join(",")}`);
     if (!response.ok) throw new Error("label-fetch-failed");
     return await response.json();
   } catch (error) {

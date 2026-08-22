@@ -1,7 +1,8 @@
 # Judge Testing Guide
 
-Thank you for taking the time to try CradleChain. No crypto wallet is required to browse.
-MetaMask is only needed to donate, or for the optional admin checks in the last step.
+Thank you for taking the time to try CradleChain. No crypto wallet is required to browse,
+and none is required to donate either, see Step 3. MetaMask is only needed for the optional
+admin checks in the last step.
 
 ## Before you start
 
@@ -23,18 +24,27 @@ Please click Donate, then open any campaign card. On the detail page you will fi
 AI summary card. Feel free to click Generate AI summary to fetch a real, on-demand
 summary of that campaign's pace and confirmer track record.
 
-## Step 3, Trigger a live checkpoint
+## Step 3, Donate without a wallet
+
+Click **Sign in** at the top right, then the **Email** tab, then **Create account**. Any
+email and an 8+ character password works, nothing is verified. This creates a real wallet
+for you behind the scenes, funded and held by the platform. Now donate to any campaign, no
+MetaMask popup, no seed phrase, just an amount and a click. This is CradleChain's answer to
+"most Malaysians don't have a crypto wallet": the chain-of-custody guarantees still apply,
+the donor just never has to touch a wallet.
+
+## Step 4, Trigger a live checkpoint
 
 On a real campaign card, please click Trigger live checkpoint. This fires a real,
 server-signed transaction on Polygon Amoy, no wallet needed. Please watch the checkpoint
 count update, then generate the AI summary again to see it reflect the new data.
 
-## Step 4, Confirmers and Analytics
+## Step 5, Confirmers and Analytics
 
 The Confirm page shows the confirmer allowlist, and the Analytics page shows aggregate
 charts across all campaigns. Both are read-only, so please feel free to explore freely.
 
-## Step 5, Optional, needs MetaMask
+## Step 6, Optional, needs MetaMask
 
 If you would like to go further, these two checks test the contract's permission logic
 directly:

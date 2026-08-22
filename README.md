@@ -28,6 +28,8 @@ chain-of-custody system built for Malaysian donors and NGOs.
   on that checkpoint before the escrowed funds actually move.
 - An AI check independently reviews the evidence photo against the claimed stage as an advisory
   second opinion, visible to anyone browsing the campaign.
+- Donors without a crypto wallet can sign up with just an email and password; the backend
+  creates and custodies a real wallet for them and signs their donation transactions.
 
 **Live demo:** https://cradle-chain.vercel.app
 
@@ -40,7 +42,7 @@ that campaign's funds tracker on the detail page a few seconds later. A full wal
 
 ## How the system fits together
 
-<img src="docs/diagrams/system-architecture.svg" alt="CradleChain system architecture: wallets, the frontend, the Vercel serverless API, CradleChain.sol on Polygon Amoy, the AI vision fallback chain, Pinata and IPFS, and the IFRC benchmark fetch" width="100%" />
+<img src="docs/diagrams/system-architecture.svg" alt="CradleChain system architecture: wallets and the frontend, the Vercel serverless API alongside the Django custodial backend on Render, CradleChain.sol on Polygon Amoy, the AI vision fallback chain, Pinata and IPFS, and the IFRC benchmark fetch" width="100%" />
 
 The contract escrows every donation until its checkpoint is confirmed. A checkpoint's status
 moves from pending to confirmed only when the campaign's registered confirmer signs it on-chain.
@@ -67,8 +69,8 @@ further without closing it.
 
 Solidity, Hardhat, and OpenZeppelin for the contract. Plain HTML, CSS, and JavaScript for the
 frontend, no build tools. Vercel serverless functions for the API layer, with a fallback chain
-across Groq, Gemini, and GitHub Models for the AI evidence check. Django for the optional
-custodial-wallet backend. A standalone zero-knowledge proof of concept lives under `zk/`.
+across Groq, Gemini, and GitHub Models for the AI evidence check. Django, deployed on Render,
+for the custodial-wallet backend. A standalone zero-knowledge proof of concept lives under `zk/`.
 
 ## Setup
 
@@ -84,14 +86,26 @@ custodial-wallet backend. A standalone zero-knowledge proof of concept lives und
    functions.
 7. `npx vercel dev` to serve the frontend and API functions together.
 
+### Custodial backend (email/password donations, optional to run locally)
+
+1. `cd backend && python -m venv venv && venv\Scripts\activate` (or `source venv/bin/activate`
+   on macOS/Linux), then `pip install -r requirements.txt`.
+2. Copy `backend/.env.example` to `backend/.env` and fill in `DJANGO_SECRET_KEY`,
+   `WALLET_ENCRYPTION_KEY`, `AMOY_RPC_URL`, and `RELAYER_PRIVATE_KEY` (a funded Amoy wallet that
+   signs custodial donations on donors' behalf).
+3. `python manage.py migrate`, then `python manage.py runserver 127.0.0.1:8000`.
+4. Live deployment runs this on Render (`gunicorn cradlechain_backend.wsgi:application`), with
+   `frontend/js/backendAuth.js`'s `API_BASE` pointed at the deployed Render URL.
+
 ## Known limitations
 
 - Nothing structurally prevents an organizer and their registered confirmer from being the same
   real-world party. The AI evidence check narrows this gap, but the next step is requiring
   confirmers to be independently vetted third parties, and considering a second confirmer for
   larger donations.
-- The custodial, no-wallet donation pipeline in `backend/` is built and tested, but only runs
-  locally today. It needs a public host before it can serve donors on the live deployment.
+- The custodial, no-wallet donation pipeline in `backend/` is deployed on Render and live on the
+  production site. It has no email verification step, so a signed-up donor's wallet is only as
+  trustworthy as the email address they typed in.
 - `slashConfirmer` exists on-chain to strip a misbehaving confirmer's stake and allowlist status,
   but nothing calls it automatically today. The next step is tying it to on-chain evidence, such
   as a confirmer's unconfirmed-checkpoint streak crossing the overdue threshold, so misbehavior
