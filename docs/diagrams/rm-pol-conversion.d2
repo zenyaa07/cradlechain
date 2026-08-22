@@ -1,0 +1,94 @@
+vars: {
+  d2-config: {
+    layout-engine: elk
+  }
+}
+
+# Same shared 7-role class palette as the other CradleChain diagrams — keep this
+# block byte-for-byte identical everywhere a color is reused for the same meaning.
+classes: {
+  trigger: {
+    style: {
+      fill: "#e1d5e7"
+      stroke: "#9673a6"
+      font-size: 32
+      stroke-width: 2
+    }
+  }
+  logic: {
+    style: {
+      fill: "#dae8fc"
+      stroke: "#6c8ebf"
+      font-size: 32
+      stroke-width: 2
+    }
+  }
+  storage: {
+    shape: cylinder
+    style: {
+      fill: "#f5f5f5"
+      stroke: "#666666"
+      font-size: 32
+      stroke-width: 2
+    }
+  }
+  error: {
+    style: {
+      fill: "#f8cecc"
+      stroke: "#b85450"
+      font-size: 32
+      stroke-width: 2
+      stroke-dash: 3
+    }
+  }
+  chain: {
+    shape: hexagon
+    style: {
+      fill: "#eef2ff"
+      stroke: "#4a56c5"
+      font-size: 32
+      stroke-width: 2
+    }
+  }
+}
+
+direction: down
+
+rate_source: "Conversion rate\n(today: two conflicting hardcoded values —\nRM_PER_POL_RATE=2.50 in backend/.env,\nMATIC_TO_RM=3.2 in gasWidget.js.\nShould be ONE shared source, static config\nis fine, a live price feed is not required." {
+  class: error
+}
+
+rm_to_pol: "RM -> POL (donating)" {
+  style.font-size: 36
+  direction: right
+
+  donor_input: "Donor types\nan RM amount\n(custodial donate form)" { class: trigger }
+  rm_to_wei_fn: "rm_to_wei()\nbackend/wallets/chain.py\npol = rm / rate\nwei = pol * 10^18" { class: logic }
+  gas_check: "ensure_gas()\ntop up custodial wallet\nfrom relayer if short" { class: logic }
+  donate_tx: "donate(campaignId)\nsigned + sent by the\ncustodial wallet" { class: chain }
+
+  donor_input -> rm_to_wei_fn: "rmAmount"
+  rm_to_wei_fn -> gas_check: "value_wei"
+  gas_check -> donate_tx: "value: value_wei"
+}
+
+pol_to_rm: "POL -> RM (should work, does not exist yet)" {
+  style.font-size: 36
+  direction: right
+
+  onchain_state: "Campaign.totalDonated\n(POL, on-chain, source of truth)" { class: storage }
+  pol_to_rm_fn: "pol_to_rm()\n(does not exist yet —\nthe inverse of rm_to_wei,\nsame shared rate)" { class: error }
+  display: "Campaign card / stat tiles\nshow RM instead of raw POL\n(what donors actually think in)" { class: trigger }
+
+  onchain_state -> pol_to_rm_fn: "read via\ngetCampaignHistory()"
+  pol_to_rm_fn -> display: "rm = pol * rate"
+}
+
+rate_source -> rm_to_pol.rm_to_wei_fn: "one shared rate\nfeeds both directions"
+rate_source -> pol_to_rm.pol_to_rm_fn: "one shared rate\nfeeds both directions" { class: error }
+
+note: "MetaMask donors already send POL directly (ethers.parseEther), no RM\nconversion happens for them at all — this diagram is specifically the\ncustodial, email/password donor's RM-denominated experience." {
+  shape: text
+  style.italic: true
+  style.font-size: 28
+}

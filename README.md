@@ -106,6 +106,13 @@ for the custodial-wallet backend. A standalone zero-knowledge proof of concept l
 - The custodial, no-wallet donation pipeline in `backend/` is deployed on Render and live on the
   production site. It has no email verification step, so a signed-up donor's wallet is only as
   trustworthy as the email address they typed in.
+- RM to POL conversion only runs one way today: a custodial donor's RM input is converted to POL
+  before it hits the chain (`rm_to_wei()` in `backend/wallets/chain.py`). Campaign totals and
+  history are always displayed in raw POL, never converted back to RM, so a donor who thinks in
+  RM has no RM-denominated view of where their money stands. Two different, uncoordinated
+  conversion rates exist in the codebase in the meantime (`RM_PER_POL_RATE=2.50` in
+  `backend/.env`, `MATIC_TO_RM = 3.2` in `frontend/js/gasWidget.js`), which would need to become
+  one shared source before a POL-to-RM display could be trusted.
 - `slashConfirmer` exists on-chain to strip a misbehaving confirmer's stake and allowlist status,
   but nothing calls it automatically today. The next step is tying it to on-chain evidence, such
   as a confirmer's unconfirmed-checkpoint streak crossing the overdue threshold, so misbehavior
