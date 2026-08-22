@@ -1,4 +1,5 @@
 import { CONTRACT_ADDRESS, CONTRACT_ABI, AMOY_CHAIN_ID, AMOY_RPC_URLS } from "./contractConfig.js";
+import { API_BASE } from "./backendAuth.js";
 
 let provider, signer, readProvider;
 
@@ -56,7 +57,7 @@ async function applyActiveAccount(address) {
   // Short address, never the full 42-char string — a signed-up donor's chosen name
   // (or anonymous placeholder) replaces this once /api/donor-labels/ resolves.
   document.getElementById("wallet-status").textContent = shortAddress(address);
-  fetch(`http://127.0.0.1:8000/api/donor-labels/?addresses=${address}`)
+  fetch(`${API_BASE}/donor-labels/?addresses=${address}`)
     .then((r) => (r.ok ? r.json() : {}))
     .then((labels) => {
       const label = labels[address];
