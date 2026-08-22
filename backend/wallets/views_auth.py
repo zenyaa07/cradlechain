@@ -15,8 +15,11 @@ from .models import DonorProfile, Wallet
 @require_GET
 @ensure_csrf_cookie
 def csrf(request):
-    get_token(request)
-    return JsonResponse({})
+    # get_token() also sets the csrftoken cookie (needed so the browser sends it back on the
+    # next request), but the cookie is scoped to this API's own domain — cross-site JS on the
+    # Vercel frontend can't read it via document.cookie. Returning the value in the body too
+    # is what lets the frontend actually put it in the X-CSRFToken header.
+    return JsonResponse({"csrfToken": get_token(request)})
 
 
 @require_POST

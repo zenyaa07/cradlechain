@@ -1,9 +1,13 @@
 export const API_BASE = "https://cradlechain-backend.onrender.com/api";
 
 export async function getCsrfToken() {
-  await fetch(`${API_BASE}/auth/csrf/`, { credentials: "include" });
-  const match = document.cookie.match(/csrftoken=([^;]+)/);
-  return match ? match[1] : "";
+  // The csrftoken cookie this sets is scoped to API_BASE's own domain, not readable via
+  // document.cookie from this (different-site) frontend, so the token has to come from the
+  // response body instead. The cookie itself still gets sent back automatically on the next
+  // request (credentials: "include"), Django just needs the header to match it.
+  const response = await fetch(`${API_BASE}/auth/csrf/`, { credentials: "include" });
+  const data = await response.json();
+  return data.csrfToken || "";
 }
 
 async function sendJson(method, path, body) {
