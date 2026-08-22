@@ -1,6 +1,17 @@
 import { getContract, getSigner, txOverrides } from "./wallet.js";
-import { PINATA_JWT } from "./pinataConfig.js";
 import { saveCheckpointLocation, geocodeLocation } from "./checkpointLocations.js";
+
+// pinataConfig.js is gitignored (holds a real Pinata JWT) and only exists on machines that
+// followed the README setup step. A static import here would 404 and, since this module is
+// part of index.html's single <script type="module"> graph, take down every other feature
+// on the page with it. Dynamic import degrades gracefully instead: IPFS pinning is disabled,
+// everything else keeps working.
+let PINATA_JWT = "";
+try {
+  ({ PINATA_JWT } = await import("./pinataConfig.js"));
+} catch {
+  // no local pinataConfig.js — uploadProofToIPFS below will fail per-call, not on page load
+}
 
 export async function uploadProofToIPFS(file) {
   const formData = new FormData();
