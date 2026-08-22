@@ -54,7 +54,7 @@ classes: {
 
 direction: down
 
-rate_source: "Conversion rate\n(today: two conflicting hardcoded values —\nRM_PER_POL_RATE=2.50 in backend/.env,\nMATIC_TO_RM=3.2 in gasWidget.js.\nShould be ONE shared source, static config\nis fine, a live price feed is not required." {
+rate_source: "Conversion rate\n(today: two separate hardcoded values,\nRM_PER_POL_RATE=2.50 in backend/.env,\nMATIC_TO_RM=3.2 in gasWidget.js.\nPlan: ONE shared source. Static config\nis fine, a live price feed is not required." {
   class: error
 }
 
@@ -72,22 +72,22 @@ rm_to_pol: "RM -> POL (donating)" {
   gas_check -> donate_tx: "value: value_wei"
 }
 
-pol_to_rm: "POL -> RM (should work, does not exist yet)" {
+pol_to_rm: "POL -> RM (planned)" {
   style.font-size: 36
   direction: right
 
   onchain_state: "Campaign.totalDonated\n(POL, on-chain, source of truth)" { class: storage }
-  pol_to_rm_fn: "pol_to_rm()\n(does not exist yet —\nthe inverse of rm_to_wei,\nsame shared rate)" { class: error }
+  pol_to_rm_fn: "pol_to_rm()\n(planned, not built yet.\nThe inverse of rm_to_wei,\nsame shared rate)" { class: error }
   display: "Campaign card / stat tiles\nshow RM instead of raw POL\n(what donors actually think in)" { class: trigger }
 
   onchain_state -> pol_to_rm_fn: "read via\ngetCampaignHistory()"
   pol_to_rm_fn -> display: "rm = pol * rate"
 }
 
-rate_source -> rm_to_pol.rm_to_wei_fn: "one shared rate\nfeeds both directions"
-rate_source -> pol_to_rm.pol_to_rm_fn: "one shared rate\nfeeds both directions" { class: error }
+rate_source -> rm_to_pol.rm_to_wei_fn
+rate_source -> pol_to_rm.pol_to_rm_fn { class: error }
 
-note: "MetaMask donors already send POL directly (ethers.parseEther), no RM\nconversion happens for them at all — this diagram is specifically the\ncustodial, email/password donor's RM-denominated experience." {
+note: "MetaMask donors already send POL directly (ethers.parseEther), no RM\nconversion happens for them at all. This diagram is specifically the\ncustodial, email/password donor's RM-denominated experience." {
   shape: text
   style.italic: true
   style.font-size: 28

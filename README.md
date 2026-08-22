@@ -105,9 +105,30 @@ for the custodial-wallet backend. A standalone zero-knowledge proof of concept l
   larger donations.
 - The custodial, no-wallet donation pipeline in `backend/` is deployed on Render and live on the
   production site. It has no email verification step, so a signed-up donor's wallet is only as
-  trustworthy as the email address they typed in.
+  trustworthy as the email address they typed in. Next step is adding an email verification flow
+  before a wallet can be used to donate.
 - `slashConfirmer` exists on-chain to strip a misbehaving confirmer's stake and allowlist status,
   but nothing calls it automatically today. The next step is tying it to on-chain evidence, such
   as a confirmer's unconfirmed-checkpoint streak crossing the overdue threshold, so misbehavior
   gets flagged without relying on a person noticing.
 
+## What's next
+
+<img src="docs/diagrams/rm-pol-conversion.svg" alt="RM to POL conversion diagram: the RM-to-POL path a custodial donor's amount takes today via rm_to_wei(), alongside the POL-to-RM display path that does not exist yet" width="100%" />
+
+- **Time-boxed refunds.** If a checkpoint sits unconfirmed past a set number of days, the donor
+  could reclaim that specific unreleased donation instead of it being stuck with no recourse.
+  This is the single biggest trust win still on the table, deliberately scoped out for now since
+  it touches core escrow logic and needs its own edge-case handling, partial refunds, a
+  checkpoint confirming right as the window closes.
+- **Multi-confirmer quorum.** Move from one confirmer per campaign to a 2-of-3 quorum, so a
+  single slow or colluding confirmer can't stall or fake a release alone.
+- **Confirmer track record on the donate card.** The confirm-rate data already exists on-chain
+  (`getConfirmerScore()`) and already feeds the AI summary. Next step is surfacing it as a plain
+  stat right next to "Confirmer: X" so a donor sees the track record before giving, not just in
+  Analytics afterward.
+- **POL-to-RM display.** RM to POL conversion works correctly today (`rm_to_wei()`), tested end
+  to end. Showing campaign totals back in RM isn't built yet: the two hardcoded rates need to
+  become one shared source first, then the display can be updated in one consistent pass.
+- **Further out.** Deploying past testnet to a production chain, onboarding real NGOs beyond the
+  seeded demo campaigns, and a mobile-friendly donor flow.
