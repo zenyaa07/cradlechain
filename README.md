@@ -33,12 +33,12 @@ chain-of-custody system built for Malaysian donors and NGOs.
 
 **Live demo:** https://cradle-chain.vercel.app
 
-## For judges, thirty seconds to verify
+## Try it in thirty seconds
 
 No wallet needed. Open the live demo, go to **Donate**, pick any campaign, and click **Trigger
 live checkpoint**. This fires a real, server-signed transaction on Polygon Amoy. Watch it land in
-that campaign's funds tracker on the detail page a few seconds later. A full walkthrough is in
-[`docs/judge-testing-guide.md`](docs/judge-testing-guide.md).
+that campaign's funds tracker on the detail page a few seconds later. A full testing walkthrough
+is in [`docs/judge-testing-guide.md`](docs/judge-testing-guide.md).
 
 ## How the system fits together
 
