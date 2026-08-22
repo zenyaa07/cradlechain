@@ -11,7 +11,7 @@ classes: {
     style: {
       fill: "#e1d5e7"
       stroke: "#9673a6"
-      font-size: 28
+      font-size: 40
       stroke-width: 2
     }
   }
@@ -20,7 +20,7 @@ classes: {
     style: {
       fill: "#d5e8d4"
       stroke: "#82b366"
-      font-size: 28
+      font-size: 40
       stroke-width: 2
     }
   }
@@ -28,7 +28,7 @@ classes: {
     style: {
       fill: "#dae8fc"
       stroke: "#6c8ebf"
-      font-size: 28
+      font-size: 40
       stroke-width: 2
     }
   }
@@ -36,7 +36,7 @@ classes: {
     style: {
       fill: "#f8cecc"
       stroke: "#b85450"
-      font-size: 28
+      font-size: 40
       stroke-width: 2
       stroke-dash: 3
     }
@@ -46,7 +46,7 @@ classes: {
     style: {
       fill: "#f5f5f5"
       stroke: "#666666"
-      font-size: 28
+      font-size: 40
       stroke-width: 2
     }
   }
@@ -55,40 +55,57 @@ classes: {
     style: {
       fill: "#ffe6cc"
       stroke: "#d79b00"
-      font-size: 28
+      font-size: 40
       stroke-width: 2
     }
   }
 }
 
-# Four columns left-to-right (Client -> Platform API -> Chain -> External),
-# each column internally stacked top-down. This reads as a left-to-right data
-# flow at a glance while keeping each column's own component list legible.
-direction: right
+# Four layers stacked top-to-bottom (Client -> Platform API -> Chain ->
+# External). Vertical keeps each layer full-width and legible at GitHub's
+# fixed README render width, instead of squeezing a wide horizontal strip.
+direction: down
 
 client_layer: "Client Layer" {
-  style.font-size: 34
-  direction: down
+  style.font-size: 40
+  direction: right
 
   wallets: "Wallets\nDonor / Organizer / Confirmer" { class: trigger }
   frontend: "Frontend\nHTML/CSS/JS + ethers.js v6\nd3.js + Leaflet" { class: logic }
-  custodial: "Custodial RM pipeline\n(simulated, no-wallet donors)" { class: mocked }
+  custodial: "Custodial signup/login\nemail + password, no wallet" { class: logic }
 
   wallets -> frontend: "connect (MetaMask)"
 }
 
-api_layer: "Platform API\nVercel Functions" {
-  style.font-size: 34
-  direction: down
+api_layer: "Platform API" {
+  style.font-size: 40
+  direction: right
 
-  trigger_checkpoint: "trigger-checkpoint.js\nlog custody stage" { class: logic }
-  verify_checkpoint: "verify-checkpoint.js\nAI photo verification" { class: logic }
-  summarize: "summarize.js\nstaleness z-score + AI recap" { class: logic }
-  relay_gas: "relay-gas.js\ngas drip for new wallets" { class: logic }
+  vercel_fns: "Vercel Functions" {
+    style.font-size: 36
+    direction: right
+
+    trigger_checkpoint: "trigger-checkpoint.js\nlog custody stage" { class: logic }
+    verify_checkpoint: "verify-checkpoint.js\nAI photo verification" { class: logic }
+    summarize: "summarize.js\nstaleness z-score + AI recap" { class: logic }
+    relay_gas: "relay-gas.js\ngas drip for new wallets" { class: logic }
+  }
+
+  django: "Django Backend\n(Render, cradlechain-backend)" {
+    style.font-size: 36
+    direction: right
+
+    auth: "auth views\nsignup / login / logout / me" { class: logic }
+    donate_relay: "donate view\nsigns + submits tx\nvia relayer wallet" { class: logic }
+    wallet_store: "Wallet\nencrypted private key" { class: storage }
+
+    auth -> wallet_store: "create on signup"
+    donate_relay -> wallet_store: "decrypt to sign"
+  }
 }
 
 chain_layer: "Polygon Amoy" {
-  style.font-size: 34
+  style.font-size: 40
   direction: down
 
   contract: "CradleChain.sol\nERC-721 + escrow" {
@@ -103,8 +120,8 @@ chain_layer: "Polygon Amoy" {
 }
 
 external_layer: "External Services" {
-  style.font-size: 34
-  direction: down
+  style.font-size: 40
+  direction: right
 
   ai_chain: "AI vision fallback chain" {
     class: external
@@ -128,17 +145,19 @@ external_layer: "External Services" {
 
 # Left-to-right flow across columns
 client_layer.frontend -> chain_layer.contract.functions: "MetaMask tx"
-client_layer.custodial -> chain_layer.contract.functions: "donate()"
-client_layer.frontend -> api_layer.trigger_checkpoint: "demo trigger"
-client_layer.frontend -> api_layer.verify_checkpoint: "photo upload"
-client_layer.frontend -> api_layer.summarize: "campaign recap"
-client_layer.frontend -> api_layer.relay_gas: "gas drip request"
+client_layer.custodial -> api_layer.django.auth: "signup / login"
+client_layer.custodial -> api_layer.django.donate_relay: "donate() request"
+client_layer.frontend -> api_layer.vercel_fns.trigger_checkpoint: "demo trigger"
+client_layer.frontend -> api_layer.vercel_fns.verify_checkpoint: "photo upload"
+client_layer.frontend -> api_layer.vercel_fns.summarize: "campaign recap"
+client_layer.frontend -> api_layer.vercel_fns.relay_gas: "gas drip request"
 
-api_layer.trigger_checkpoint -> chain_layer.contract.functions: "logCheckpoint()"
-api_layer.relay_gas -> chain_layer.contract.functions: "fund new wallet"
-api_layer.summarize -> chain_layer.contract.state: "read history"
+api_layer.vercel_fns.trigger_checkpoint -> chain_layer.contract.functions: "logCheckpoint()"
+api_layer.vercel_fns.relay_gas -> chain_layer.contract.functions: "fund new wallet"
+api_layer.vercel_fns.summarize -> chain_layer.contract.state: "read history"
+api_layer.django.donate_relay -> chain_layer.contract.functions: "signed donate() tx\nvia relayer wallet"
 
-api_layer.verify_checkpoint -> external_layer.pinata: "pin proof photo"
-api_layer.verify_checkpoint -> external_layer.ai_chain.groq: "classify photo"
-api_layer.summarize -> external_layer.ai_chain.gemini: "generate recap"
-api_layer.summarize -> external_layer.ifrc: "pacing benchmark"
+api_layer.vercel_fns.verify_checkpoint -> external_layer.pinata: "pin proof photo"
+api_layer.vercel_fns.verify_checkpoint -> external_layer.ai_chain.groq: "classify photo"
+api_layer.vercel_fns.summarize -> external_layer.ai_chain.gemini: "generate recap"
+api_layer.vercel_fns.summarize -> external_layer.ifrc: "pacing benchmark"

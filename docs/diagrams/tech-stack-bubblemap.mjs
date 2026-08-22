@@ -107,10 +107,9 @@ const CATEGORIES = [
   },
   {
     key: "demo",
-    label: "Demo & Custodial\nSimulation",
+    label: "Demo\nScripting",
     fill: "#ffe6cc", stroke: "#d79b00", text: "#5c3d00", // = mocked
     leaves: [
-      "Custodial RM pipeline\n(no-wallet donors)",
       "Gas drip relay\n(new wallet funding)",
       "demoConfig.js\nscripted demo state",
       "seed.js\n(Amoy testnet seeding)",
@@ -122,6 +121,8 @@ const CATEGORIES = [
     fill: "#fff2cc", stroke: "#d6b656", text: "#5c4a13", // = review
     leaves: [
       "Vercel\n(static + functions)",
+      "Render\n(Django hosting)",
+      "gunicorn\n(WSGI server)",
       "dotenv\nenv management",
       "D2 diagrams",
       "hardhat test\n(mocha/chai)",
