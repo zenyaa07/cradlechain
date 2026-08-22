@@ -4,11 +4,11 @@ import { getCsrfToken, API_BASE } from "./backendAuth.js";
 let backendSession = null;
 window.addEventListener("cradlechain:backend-session", (event) => {
   backendSession = event.detail;
-  updateAmountPlaceholders(backendSession ? "Amount (RM)" : "Amount (POL)");
+  updateAmountPlaceholders(document, backendSession ? "Amount (RM)" : "Amount (POL)");
 });
 
-function updateAmountPlaceholders(text) {
-  document.querySelectorAll('.donate-form input[name="amount"]').forEach((input) => {
+function updateAmountPlaceholders(scope, text) {
+  scope.querySelectorAll('.donate-form input[name="amount"]').forEach((input) => {
     input.placeholder = text;
   });
 }
@@ -17,6 +17,14 @@ function updateAmountPlaceholders(text) {
 // sidebar form — both live inside a `.campaign-card[data-campaign-id]`, which is all this
 // needs to resolve the campaign.
 export function mountDonateForms(root = document.getElementById("campaign-list")) {
+  // campaigns.js/campaignDetail.js render fresh .donate-form HTML with a hardcoded
+  // "Amount (POL)" placeholder every time campaign cards (re)render — which happens after
+  // the one-time cradlechain:backend-session event above already fired on page load. Without
+  // this, a signed-in custodial donor keeps seeing "(POL)" on any form rendered after login.
+  const applyCurrentPlaceholder = () => updateAmountPlaceholders(root, backendSession ? "Amount (RM)" : "Amount (POL)");
+  new MutationObserver(applyCurrentPlaceholder).observe(root, { childList: true, subtree: true });
+  applyCurrentPlaceholder();
+
   root.addEventListener("submit", async (event) => {
     if (!event.target.matches(".donate-form")) return;
     event.preventDefault();
