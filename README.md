@@ -105,7 +105,9 @@ for the custodial-wallet backend. A standalone zero-knowledge proof of concept l
   larger donations.
 - The custodial, no-wallet donation pipeline in `backend/` is deployed on Render and live on the
   production site. It has no email verification step, so a signed-up donor's wallet is only as
-  trustworthy as the email address they typed in.
+  trustworthy as the email address they typed in. Render's free tier also sleeps the backend
+  after 15 minutes idle; the first request after that can take 20-50s to cold-start, everything
+  after is fast. Judges hitting a cold backend should just wait for the first response.
 - RM to POL conversion only runs one way today: a custodial donor's RM input is converted to POL
   before it hits the chain (`rm_to_wei()` in `backend/wallets/chain.py`). Campaign totals and
   history are always displayed in raw POL, never converted back to RM, so a donor who thinks in
