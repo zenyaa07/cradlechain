@@ -1,5 +1,9 @@
 # CradleChain
 
+Blockchain-verified micro-donation chain-of-custody for Malaysian donors and NGOs.
+
+**Live demo:** https://cradle-chain.vercel.app
+
 ## Inspiration
 
 My inspiration comes from a fish ladder, a structure engineers built when a dam blocks a river.
@@ -38,7 +42,17 @@ chain-of-custody system built for Malaysian donors and NGOs.
 - **NGOs and campaign organizers** who want a public, verifiable record of fund disbursement they
   can point to, instead of just their own word.
 
-### Custodial donor walkthrough: sign in and donate
+## See it in action
+
+### Browsing and verifying a campaign
+
+<p float="left">
+  <img src="docs/screenshots/prod-01-overview.png" alt="CradleChain overview page: live stats, activity feed, and the fund-flow network graph" width="32%" />
+  <img src="docs/screenshots/02-donate-campaigns.png" alt="Donate page: a campaign card with photo, gas estimate, and Trigger live checkpoint button" width="32%" />
+  <img src="docs/screenshots/03-campaign-detail.png" alt="Campaign detail page: the custody funds tracker, funds-by-stage chart, and checkpoint timeline" width="32%" />
+</p>
+
+### Signing up and donating without a wallet
 
 <p float="left">
   <img src="docs/screenshots/prod-02-signin-dropdown.png" alt="Sign-in dropdown with the Email tab and Create account link" width="32%" />
@@ -50,14 +64,6 @@ Click **Sign in** at the top right, then the **Email** tab, then **Create accoun
 email and an 8+ character password works, nothing is verified. This creates a real wallet
 for you behind the scenes, funded and held by the platform. Now donate to any campaign, no
 MetaMask popup, no seed phrase, just an amount and a click.
-
-**Live demo:** https://cradle-chain.vercel.app
-
-<p float="left">
-  <img src="docs/screenshots/prod-01-overview.png" alt="CradleChain overview page: live stats, activity feed, and the fund-flow network graph" width="32%" />
-  <img src="docs/screenshots/02-donate-campaigns.png" alt="Donate page: a campaign card with photo, gas estimate, and Trigger live checkpoint button" width="32%" />
-  <img src="docs/screenshots/03-campaign-detail.png" alt="Campaign detail page: the custody funds tracker, funds-by-stage chart, and checkpoint timeline" width="32%" />
-</p>
 
 ## Try it in thirty seconds
 
@@ -140,8 +146,6 @@ for the custodial-wallet backend. A standalone zero-knowledge proof of concept l
 
 ## What's next
 
-<img src="docs/diagrams/rm-pol-conversion.svg" alt="RM to POL conversion diagram: the RM-to-POL path a custodial donor's amount takes today via rm_to_wei(), alongside the POL-to-RM display path that does not exist yet" width="100%" />
-
 - **Time-boxed refunds.** If a checkpoint sits unconfirmed past a set number of days, the donor
   could reclaim that specific unreleased donation instead of it being stuck with no recourse.
   This is the single biggest trust win still on the table, deliberately scoped out for now since
@@ -156,6 +160,9 @@ for the custodial-wallet backend. A standalone zero-knowledge proof of concept l
 - **POL-to-RM display.** RM to POL conversion works correctly today (`rm_to_wei()`), tested end
   to end. Showing campaign totals back in RM isn't built yet: the two hardcoded rates need to
   become one shared source first, then the display can be updated in one consistent pass.
+
+  <img src="docs/diagrams/rm-pol-conversion.svg" alt="RM to POL conversion diagram: the RM-to-POL path a custodial donor's amount takes today via rm_to_wei(), alongside the POL-to-RM display path that does not exist yet" width="100%" />
+
 - **Further out.** Deploying past testnet to a production chain, onboarding real NGOs beyond the
   seeded demo campaigns, and a mobile-friendly donor flow.
 
