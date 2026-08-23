@@ -11,6 +11,11 @@ are live on-chain for this session. If they are, you will see real data. If a ca
 shows a "Demo data, connect a wallet" notice, you are looking at fallback data instead,
 please see the last section before judging anything off it.
 
+The custodial sign-in/donate backend (Step 3) runs on Render's free tier, which sleeps
+after 15 minutes idle. If it's been a while since the last visit, the first request can
+take 20-50s to cold-start, everything after is fast. Please just wait for that first
+response rather than assuming it's broken.
+
 ## Step 1, Overview page
 
 Please open the app. You will land on Overview. Take a look at the four stat cards, the
