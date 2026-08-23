@@ -31,7 +31,26 @@ chain-of-custody system built for Malaysian donors and NGOs.
 - Donors without a crypto wallet can sign up with just an email and password; the backend
   creates and custodies a real wallet for them and signs their donation transactions.
 
+### Custodial donor walkthrough: sign in and donate
+
+<p float="left">
+  <img src="docs/screenshots/prod-02-signin-dropdown.png" alt="Sign-in dropdown with the Email tab and Create account link" width="32%" />
+  <img src="docs/screenshots/prod-03-signup-filled.png" alt="Create account form filled in with email and password" width="32%" />
+  <img src="docs/screenshots/prod-05-donate-page.png" alt="Donate page with an RM amount entered for a custodial donor" width="32%" />
+</p>
+
+Click **Sign in** at the top right, then the **Email** tab, then **Create account**. Any
+email and an 8+ character password works, nothing is verified. This creates a real wallet
+for you behind the scenes, funded and held by the platform. Now donate to any campaign, no
+MetaMask popup, no seed phrase, just an amount and a click.
+
 **Live demo:** https://cradle-chain.vercel.app
+
+<p float="left">
+  <img src="docs/screenshots/prod-01-overview.png" alt="CradleChain overview page: live stats, activity feed, and the fund-flow network graph" width="32%" />
+  <img src="docs/screenshots/02-donate-campaigns.png" alt="Donate page: a campaign card with photo, gas estimate, and Trigger live checkpoint button" width="32%" />
+  <img src="docs/screenshots/03-campaign-detail.png" alt="Campaign detail page: the custody funds tracker, funds-by-stage chart, and checkpoint timeline" width="32%" />
+</p>
 
 ## Try it in thirty seconds
 
