@@ -31,6 +31,13 @@ chain-of-custody system built for Malaysian donors and NGOs.
 - Donors without a crypto wallet can sign up with just an email and password; the backend
   creates and custodies a real wallet for them and signs their donation transactions.
 
+## Who this is for
+
+- **Malaysian donors** who want to give to flood-relief and disaster campaigns without wondering
+  whether the money actually reached anyone, no crypto experience or wallet required to donate.
+- **NGOs and campaign organizers** who want a public, verifiable record of fund disbursement they
+  can point to, instead of just their own word.
+
 ### Custodial donor walkthrough: sign in and donate
 
 <p float="left">
@@ -151,3 +158,14 @@ for the custodial-wallet backend. A standalone zero-knowledge proof of concept l
   become one shared source first, then the display can be updated in one consistent pass.
 - **Further out.** Deploying past testnet to a production chain, onboarding real NGOs beyond the
   seeded demo campaigns, and a mobile-friendly donor flow.
+
+## References
+
+- [Deployed contract on Polygon Amoy (PolygonScan)](https://amoy.polygonscan.com/address/0x7f22b45852F66C3eFDECC0C6AcB1D17729787da0)
+- [OpenZeppelin ERC-721 contracts](https://docs.openzeppelin.com/contracts/4.x/erc721) — used for the Completion NFT
+- [ethers.js v6 documentation](https://docs.ethers.org/v6/) — frontend/contract interaction
+- [Hardhat](https://hardhat.org/docs) — contract compilation, testing, deployment
+- [Pinata / IPFS docs](https://docs.pinata.cloud/) — evidence photo pinning
+- MACC investigation into RM230 million in misappropriated NGO donations, and JPPM's 314 logged
+  fund-misuse complaints — the real-world problem this project responds to (cited in
+  [Inspiration](#inspiration) above)
