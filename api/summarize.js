@@ -16,8 +16,9 @@ const THRESHOLD_SECONDS = {
 
 const ZSCORE_THRESHOLD = 2;
 
-// qwen/qwen3.6-27b is a reasoning model — it thinks out loud in a <think>...</think> block
+// qwen/qwen3.8-27b is a reasoning model — it thinks out loud in a <think>...</think> block
 // before the actual answer. Strip that off, same as api/verify-checkpoint.js.
+// (Switched from qwen3.6-27b: Groq deprecated it 2026-09-02, decommission 2026-09-14.)
 function stripThinking(text) {
   return text.replace(/^[\s\S]*<\/think>/, "").trim();
 }
@@ -121,7 +122,7 @@ export default async function handler(req, res) {
         Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "qwen/qwen3.6-27b",
+        model: "qwen/qwen3.8-27b",
         messages: [{ role: "user", content: prompt }],
       }),
     }),

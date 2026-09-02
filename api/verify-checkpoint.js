@@ -9,7 +9,7 @@ function fetchWithTimeout(url, options) {
   return fetch(url, { ...options, signal: controller.signal }).finally(() => clearTimeout(timer));
 }
 
-// qwen/qwen3.6-27b is a reasoning model — it thinks out loud in a <think>...</think> block
+// qwen/qwen3.8-27b is a reasoning model — it thinks out loud in a <think>...</think> block
 // before the actual two-line answer. Strip that off rather than let it break parseVerdict's
 // line-split. If the model got cut off mid-thought (no closing tag — happens under the token
 // budget below), there's no safe way to recover the real answer from a half-finished reasoning
@@ -22,8 +22,9 @@ function stripThinking(text) {
   return text.replace(/^[\s\S]*<\/think>/, "").trim();
 }
 
-// Ordered by free-tier headroom: Groq's qwen/qwen3.6-27b (14,400 requests/day on this key,
-// confirmed working) first, then Gemini (a 20-requests/day cap — confirmed by hitting it),
+// Ordered by free-tier headroom: Groq's qwen/qwen3.8-27b (was qwen3.6-27b, deprecated by
+// Groq 2026-09-02 and decommissioned 2026-09-14; 3.8 is Groq's stated replacement and still
+// multimodal) first, then Gemini (a 20-requests/day cap — confirmed by hitting it),
 // then GitHub Models as a last resort. Each entry takes the same (prompt, mimeType,
 // base64Image) and returns the model's raw two-line reply, or throws to fall through.
 const VISION_PROVIDERS = [
@@ -35,11 +36,10 @@ const VISION_PROVIDERS = [
         Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "qwen/qwen3.6-27b",
-        // "none" skips the <think> reasoning phase entirely — this model only accepts "none" or
-        // "default" (confirmed via the API's own 400 response, not docs), and "default" is what
-        // was producing the reasoning traces that kept getting cut off mid-thought at
-        // max_tokens: 1024 in the first place. Skipping it outright is both the fix and faster.
+        model: "qwen/qwen3.8-27b",
+        // "none" skips the <think> reasoning phase entirely — this was confirmed for 3.6 via
+        // the API's own 400 response, not docs; not yet re-confirmed for 3.8, so watch for a
+        // 400 here if Groq's accepted values changed between versions.
         reasoning_effort: "none",
         max_tokens: 1024,
         messages: [
